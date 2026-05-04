@@ -18,7 +18,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 - **Higher freight costs are associated with worse reviews, but delivery time is likely the real reason.** The median freight cost spread across all review scores is only about 2 Brazilian Real. The correlation with bad reviews is likely confounded by delivery time, since bulky products cost more to ship and also take longer to deliver.
 
-<img src="freight_vs_review_score.png" width="70%" alt="Freight Costs vs Review Score">
+<img src="images/freight_vs_review_score.png" width="70%" alt="Freight Costs vs Review Score">
 
 - **Arriving late relative to the estimate is not the core problem.** Olist pads delivery estimates enough that even the worst-reviewed orders typically arrive 6 days early. Raw delivery time, not relative lateness, drives dissatisfaction. A customer waiting 20 days for their order is unhappy regardless of what the estimate said.
 
