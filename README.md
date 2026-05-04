@@ -14,21 +14,23 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 - **Deliveries over 21 days significantly increase risk** Bad review rates rise gradually from 14.1% to 22.6% below that point, then nearly double crossing it, reaching 40.6% for orders taking 22 to 30 days and 75.7% for orders taking 31 or more days.
 
-<img src="images/bad_reviews_by_delivery_buckets.png" width="70%" alt="Bad Review Rate by Delivery Day Bucket">
+<img src="images/delivery_buckets_graph.png" width="70%" margin-left= "10%" alt="Horizontal bar chart showing Bad Review Rate by Delivery Day Bucket">
 
 - **Higher freight costs are associated with worse reviews, but delivery time is likely the real reason.** The median freight cost spread across all review scores is only about 2 Brazilian Real. The correlation with bad reviews is likely confounded by delivery time, since bulky products cost more to ship and also take longer to deliver.
 
-<img src="images/freight_vs_review_score.png" width="70%" alt="Freight Costs vs Review Score">
+<img src="freight_vs_review_score.png" width="70%" alt="Freight Costs vs Review Score">
 
 - **Arriving late relative to the estimate is not the core problem.** Olist pads delivery estimates enough that even the worst-reviewed orders typically arrive 6 days early. Raw delivery time, not relative lateness, drives dissatisfaction. A customer waiting 20 days for their order is unhappy regardless of what the estimate said.
 
- **Some sellers consistently generate bad reviews at a rate far above the platform average.** Among sellers with at least 20 orders, the worst performer has a 70.1% bad review rate across 107 orders. One high-volume seller with 967 orders carries a 40.4% bad review rate, generating approximately 391 bad reviews on their own. "Every seller in the top 30 by bad review rate has at least double the average of the platform (roughly 20%).
+<img src="images/1_star_orders_arrived_3.4_days_before_graph.png" width="70%" alt="Horizontal Bar chart showing 1-Star Orders Take 21 Days to Deliver, Twice as Long as 5-Star Orders">
 
-<img src="images/sellers_with_highest_bad_review_percent.png" width="70%" alt="Sellers with Highest Bad Review Percentage">
+ **Some sellers consistently generate bad reviews at a rate far above the platform average.** Among sellers with at least 20 orders, the worst performer has a 70.1% bad review rate across 107 orders. One high-volume seller with 967 orders carries a 40.4% bad review rate, generating approximately 391 bad reviews on their own. "Every seller in the top 30 by bad review rate has at least double the 23% average of the platform.
+
+<img src="images/sellers_with_highest_bad_review_percent.png" width="70%" alt="Horizontal bar chart showing Sellers with Highest Bad Review Percentage">
 
 **Home and furniture categories have the worst bad review rates on the platform.** `office_furniture` has a 36.6% bad review rate across 1,244 orders, nearly double the platform average. `bed_bath_table` is the single largest contributor with 2,398 bad reviews across 9,175 orders. Home comfort, furniture, and mattress categories dominate the top 15 by bad review rate, suggesting something wrong with bulky, hard-to-ship products.
 
-<img src="images/categories_with_bad_reviews.png" width="70%" alt="Product Categories Ranked by Bad Review Rate">
+<img src="images/of_the_1244_office_furniture_orders_graph.png" width="70%" alt="Horizontal bar chart showing Product Categories Ranked by Bad Review Rate">
 
 ---
 
