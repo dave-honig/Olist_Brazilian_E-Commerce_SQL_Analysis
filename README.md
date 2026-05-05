@@ -6,11 +6,17 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 > A "bad review" is defined as a review score of 1, 2, or 3. These customers are less likely to return making them a churn risk.
 
+[View the Tableau dashboard here](https://public.tableau.com/views/OlistProjectinTableau/OlistProject?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link)
+
 ---
 
 ## Key Findings
 
 - **Delivery time is the dominant driver of bad reviews.** Orders with a score of 1 averaged 20.8 days to deliver versus 10.2 days for orders with a score of 5. Every step up in review score corresponded to a shorter delivery time without exception.
+
+<p align="center">
+<img src="images/1_star_orders_take_21_days_to_deliver_graph.png" width="60%" margin-left= "10%" alt="Horizontal bar chart showing Star Rating vs Delivery Time">
+</p>
 
 - **Deliveries over 21 days significantly increase risk** Bad review rates rise gradually from 14.1% to 22.6% below that point, then nearly double crossing it, reaching 40.6% for orders taking 22 to 30 days and 75.7% for orders taking 31 or more days.
 
