@@ -285,13 +285,11 @@ FROM seller_order_counts;
 
 
 /*
-Sellers with the highest percentage of bad reviews.
+Sellers with the highest percentage of bad reviews, filtered to sellers with at least 20 orders.
 - The worst seller has a 70.1% bad review rate across 107 orders.
-- Seller_id starting with 7c67e (row 26) has 967 orders with a 40.4% bad review rate generating roughly 391 bad reviews on its own.
-
-Two different types of risk:
-- High rate, moderate volume (rows 1 through 5)
--Moderate rate, high volume (rows 25 and 26)
+- Every seller in the top 15 by bad review rate has at least double the platform average of 23%.
+- Note: individual seller outliers are context for the segmentation analysis below, which shows
+  that high-risk sellers as a group account for only 14% of all bad reviews on the platform.
 */
 WITH seller_orders AS (
     SELECT DISTINCT
@@ -324,6 +322,57 @@ SELECT
 FROM seller_reviews
 ORDER BY bad_review_pct DESC
 LIMIT 30;
+
+
+
+--SELLER RISK DISTRIBUTION-------------------------------
+
+/*
+Are bad reviews concentrated in high-risk sellers or spread across the platform?
+- Sellers are segmented into three groups using a dynamically calculated platform average
+  to avoid hardcoding the threshold value.
+- High risk sellers (35%+) account for only 13.9% of all bad reviews despite having the worst rates.
+- 86.1% of bad reviews come from sellers at or near the platform average.
+- This indicates bad reviews are a platform-wide logistics problem, not a bad seller problem.
+  Removing every high-risk seller would leave the vast majority of the problem untouched.
+*/
+WITH seller_orders AS (
+    SELECT DISTINCT
+        i.seller_id,
+        i.order_id
+    FROM order_items i
+    INNER JOIN orders_clean o ON i.order_id = o.order_id
+),
+seller_reviews AS (
+    SELECT
+        s.seller_id,
+        COUNT(s.order_id) AS order_count,
+        SUM(CASE WHEN r.review_score <= 3 THEN 1 ELSE 0 END) AS bad_reviews,
+        ROUND(
+            100.0 * SUM(CASE WHEN r.review_score <= 3 THEN 1 ELSE 0 END)
+            / COUNT(s.order_id), 1) AS bad_review_pct
+    FROM seller_orders s
+    INNER JOIN reviews_deduped r ON s.order_id = r.order_id
+    GROUP BY s.seller_id
+),
+platform_avg AS (
+    SELECT ROUND(100.0 * SUM(CASE WHEN review_score <= 3 THEN 1 ELSE 0 END) / COUNT(*), 1) AS avg_bad_review_pct
+    FROM reviews_deduped
+)
+SELECT
+    CASE
+        WHEN sr.bad_review_pct < pa.avg_bad_review_pct THEN '1. Below Platform Average'
+        WHEN sr.bad_review_pct BETWEEN pa.avg_bad_review_pct AND 35 THEN '2. Moderate Risk (23% - 35%)'
+        ELSE '3. High Risk (35%+)'
+    END AS seller_segment,
+    COUNT(*) AS seller_count,
+    SUM(sr.order_count) AS total_orders,
+    SUM(sr.bad_reviews) AS total_bad_reviews,
+    ROUND(100.0 * SUM(sr.bad_reviews) / SUM(SUM(sr.bad_reviews)) OVER (), 1) AS pct_of_all_bad_reviews
+FROM seller_reviews sr
+CROSS JOIN platform_avg pa
+GROUP BY seller_segment
+ORDER BY seller_segment;
 
 
 
