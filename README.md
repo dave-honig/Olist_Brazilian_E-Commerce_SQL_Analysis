@@ -20,15 +20,15 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 - **Higher freight costs are associated with worse reviews, but delivery time is likely the real reason.** The median freight cost spread across all review scores is only about 2 Brazilian Real. The correlation with bad reviews is likely confounded by delivery time, since bulky products cost more to ship and also take longer to deliver.
 
-<img src="images/freight_vs_review_score.png" width="70%" alt="Freight Costs vs Review Score">
+<img src="images/median_freight_varies_by_2_dollars_graph.png" width="70%" alt="Horizontal bar chart showing Freight Costs vs Review Score">
 
 - **Arriving late relative to the estimate is not the core problem.** Olist pads delivery estimates enough that even the worst-reviewed orders typically arrive 6 days early. Raw delivery time, not relative lateness, drives dissatisfaction. A customer waiting 20 days for their order is unhappy regardless of what the estimate said.
 
 <img src="images/1_star_orders_arrived_3.4_days_before_graph.png" width="70%" alt="Horizontal Bar chart showing 1-Star Orders Take 21 Days to Deliver, Twice as Long as 5-Star Orders">
 
- **Some sellers consistently generate bad reviews at a rate far above the platform average.** Among sellers with at least 20 orders, the worst performer has a 70.1% bad review rate across 107 orders. One high-volume seller with 967 orders carries a 40.4% bad review rate, generating approximately 391 bad reviews on their own. "Every seller in the top 30 by bad review rate has at least double the 23% average of the platform.
+**Bad reviews are a platform-wide logistics problem, not a bad seller problem.** Sellers with a bad review rate above 35% account for only 14% of all bad reviews on the platform. The remaining 86% come from sellers at or near the platform average of 23%. Removing every high-risk seller would leave the vast majority of the problem untouched."
 
-<img src="images/sellers_with_highest_bad_review_percent.png" width="70%" alt="Horizontal bar chart showing Sellers with Highest Bad Review Percentage">
+<img src="images/only_14_percent_of_bad_reviews_come_from_graph.png" width="70%" alt="Horizontal bar chart showing only 14% of bad reviews come from High Risk Sellers">
 
 **Home and furniture categories have the worst bad review rates on the platform.** `office_furniture` has a 36.6% bad review rate across 1,244 orders, nearly double the platform average. `bed_bath_table` is the single largest contributor with 2,398 bad reviews across 9,175 orders. Home comfort, furniture, and mattress categories dominate the top 15 by bad review rate, suggesting something wrong with bulky, hard-to-ship products.
 
