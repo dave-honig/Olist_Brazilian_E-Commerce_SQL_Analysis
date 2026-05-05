@@ -6,6 +6,9 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 > A "bad review" is defined as a review score of 1, 2, or 3. These customers are less likely to return making them a churn risk.
 
+---
+
+## Tableau Dashboard
 [View the Tableau dashboard here](https://public.tableau.com/views/OlistProjectinTableau/OlistProject?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link)
 
 ---
@@ -18,7 +21,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 <img src="images/1_star_orders_take_21_days_to_deliver_graph.png" width="60%" margin-left= "10%" alt="Horizontal bar chart showing Star Rating vs Delivery Time">
 </p>
 
-- **Deliveries over 21 days significantly increase risk** Bad review rates rise gradually from 14.1% to 22.6% below that point, then nearly double crossing it, reaching 40.6% for orders taking 22 to 30 days and 75.7% for orders taking 31 or more days.
+- **Deliveries over 21 days significantly increase risk.** Bad review rates rise gradually from 14.1% to 22.6% below that point, then nearly double crossing it, reaching 40.6% for orders taking 22 to 30 days and 75.7% for orders taking 31 or more days.
 
 <p align="center">
 <img src="images/delivery_buckets_graph.png" width="60%" margin-left= "10%" alt="Horizontal bar chart showing Bad Review Rate by Delivery Day Bucket">
@@ -36,13 +39,13 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 <img src="images/1_star_orders_arrived_3.4_days_before_graph.png" width="60%" alt="Horizontal Bar chart showing 1-Star Orders Take 21 Days to Deliver, Twice as Long as 5-Star Orders">
 </p>
 
-**Bad reviews are a platform-wide logistics problem, not a bad seller problem.** Sellers with a bad review rate above 35% account for only 14% of all bad reviews on the platform. The remaining 86% come from sellers at or near the platform average of 23%. Removing every high-risk seller would leave the vast majority of the problem untouched.
+- **Bad reviews are a platform-wide logistics problem, not a bad seller problem.** Sellers with a bad review rate above 35% account for only 14% of all bad reviews on the platform. The remaining 86% come from sellers at or near the platform average of 23%. Removing every high-risk seller would leave the vast majority of the problem untouched.
 
 <p align="center">
 <img src="images/only_14_percent_of_bad_reviews_come_from_graph.png" width="60%" alt="Horizontal bar chart showing only 14% of bad reviews come from High Risk Sellers">
 </p>
 
-**Home and furniture categories have the worst bad review rates on the platform.** `office_furniture` has a 36.6% bad review rate across 1,244 orders, nearly double the platform average. `bed_bath_table` is the single largest contributor with 2,398 bad reviews across 9,175 orders. Home comfort, furniture, and mattress categories dominate the top 15 by bad review rate, suggesting something wrong with bulky, hard-to-ship products.
+- **Home and furniture categories have the worst bad review rates on the platform.** `office_furniture` has a 36.6% bad review rate across 1,244 orders, nearly double the platform average. `bed_bath_table` is the single largest contributor with 2,398 bad reviews across 9,175 orders. Home comfort, furniture, and mattress categories dominate the top 15 by bad review rate, suggesting something wrong with bulky, hard-to-ship products.
 
 <p align="center">
 <img src="images/of_the_1244_office_furniture_orders_graph.png" width="60%" alt="Horizontal bar chart showing Product Categories Ranked by Bad Review Rate">
