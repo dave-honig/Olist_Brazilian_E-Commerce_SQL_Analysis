@@ -8,10 +8,6 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 ---
 
-## Tableau Dashboard
-[View the Tableau dashboard here](https://public.tableau.com/views/OlistProjectinTableau/OlistProject?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link)
-
-
 <p align="center">
   <a href="https://public.tableau.com/views/OlistProjectinTableau/OlistProject?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link">
     <img src="images/olist_tableau_dashboard.png" width="80%" alt="Tableau dashboard showing metrics which drive bad reviews">
