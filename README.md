@@ -38,10 +38,10 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 <img src="images/median_freight_varies_by_2_dollars_graph.png" width="60%" alt="Horizontal bar chart showing Freight Costs vs Review Score">
 </p>
 
-- **Arriving late relative to the estimate is not the core problem.** Olist pads delivery estimates enough that even the worst-reviewed orders typically arrive 6 days early. Raw delivery time, not relative lateness, drives dissatisfaction. A customer waiting 20 days for their order is unhappy regardless of what the estimate said.
+- **Arriving late relative to the estimate is not the core problem.** Olist pads delivery estimates enough that even the worst-reviewed orders arriving on average 3.4 days <u>before</u> the estimated date. Raw delivery time, not relative lateness, drives dissatisfaction. A customer waiting 20 days for their order is unhappy regardless of what the estimate said.
 
 <p align="center">
-<img src="images/1_star_orders_arrived_3.4_days_before_graph.png" width="60%" alt="Horizontal Bar chart showing 1-Star Orders Take 21 Days to Deliver, Twice as Long as 5-Star Orders">
+<img src="images/1_star_orders_arrived_3.4_days_before_graph.png" width="60%" alt="Horizontal Bar chart showing 1-Star Orders arrive 3.4 days before the estimate delivery date on average">
 </p>
 
 - **Bad reviews are a platform-wide logistics problem, not a bad seller problem.** Sellers with a bad review rate above 35% account for only 14% of all bad reviews on the platform. The remaining 86% come from sellers at or near the platform average of 23%. Removing every high-risk seller would leave the vast majority of the problem untouched.
