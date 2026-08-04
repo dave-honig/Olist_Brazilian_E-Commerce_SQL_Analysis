@@ -103,12 +103,14 @@ The Brazilian E-Commerce Public Dataset by Olist is available on [Kaggle](https:
 
 ```
 sql/
-    01_setup.sql           -- Load reviews CSV, verify row counts, rename tables
-    02_data_quality.sql    -- Data quality investigation, fixes, views, and constraints
-    03_exploration.sql     -- Distribution checks and all analytical queries
-images/                    -- Screenshots of query results
+    01_setup.sql                  -- Load reviews CSV, verify row counts, rename tables
+    02_data_quality.sql           -- Data quality investigation, fixes, views, and constraints
+    03_exploration.sql            -- Distribution checks and all analytical queries
+    images/                       -- Screenshots of query results
+Olist Project in Tableau.twbx     -- Packaged Tableau workbook
 README.md
 ```
+The Olist dataset CSVs are sourced from [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). 
 
 ## How to Run
 
