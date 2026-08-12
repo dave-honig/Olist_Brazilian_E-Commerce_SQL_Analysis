@@ -23,36 +23,37 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 **Delivery time is the dominant driver of bad reviews.** 
 - The bad review rate climbs from 14.1% for orders delivered within a week to 75.7% for orders taking over 31 days to arrive. 
 - The risk of a bad review nearly doubles from 22.6% to 40.6% if their delivery took over 3 weeks to arrive. 
-- Orders rated 1 star took 20.8 days to arrive on average against 10.2 days for 5-star orders, with every step up in review score corresponded to a shorter delivery time without exception.
+- Orders rated 1-star took 20.8 days to arrive on average against 10.2 days for 5-star orders.
+- Every increase in review score corresponded to a shorter delivery time without exception.
 
 <p align="center">
-<img src="images/orders_taking_over_31_days_graph.png" width="60%" alt="Line chart showing bad review rate rising from 14.1% to 75.7% across delivery day buckets">
+<img src="images/orders_taking_over_31_days_graph.png" width="50%" alt="Line chart showing bad review rate rising from 14.1% to 75.7% across delivery day buckets">
 </p>
 
 **The problem is the wait itself, not a late delivery.**
-- Olist pads its delivery estimates heavily with 93.2% of orders arrive on or before the estimated date.
+- Olist pads its delivery estimates heavily with 93.2% of orders arriving on or before the estimated date.
 - Even 1-star orders arrive 3.4 days **early** on average. 
-- The longer a customers needs to wait, the greater the chance of a negative review.
+- The longer a customer needs to wait, the greater the chance of a negative review.
 
 <p align="center">
 <img src="images/padded_delivery_estimates_graph.png" width="40%" alt="Bar chart showing average days each review score arrived before the estimated delivery date">
 </p>
 
-**Typical orders show a minimal difference in the bad review rate when factoring in shipping costs**
-- A difference of only R$2 separate 1-star orders with a median of R$18.79 to R$16.79 for a 5-star order.
-- Averages diverge much further at R$28.15 for 1 star and R$21.71 for 5 star orders. The 1 star average in being pulled up by expensive outliers at a higher rate then 5 star orders.
+**Typical orders show a minimal difference in shipping costs between 1-star and 5-star orders**
+- A difference of only R$2 separates 1-star orders with a median of R$18.79 to R$16.79 for a 5-star order.
+- Averages diverge much further at R$28.15 for 1-star and R$21.71 for 5-star orders. The 1-star average in being increased by expensive outliers at a higher rate than 5-star orders.
 
 <p align="center">
 <img src="images/1_star_orders_typically_pay_graph.png" width="60%" alt="Dumbbell chart comparing median and average shipping cost for each review score">
 </p>
 
-**Controlling for delivery time removes the effect.**
+**Shipping costs are not a reliable indicator of bad reviews once orders are grouped by delivery time.**
 - Splitting each delivery time bucket into cheaper and pricier shipping halves, the bad review rate climbs from 12.7% to 80.5% among cheap-shipping orders and from 17.0% to 73.9% among expensive ones.
 - Within any single delivery time bucket the shipping gap is small.
-- Orders with cheaper shipping overtaking the orders with more epensive shipping as the delivery time increases. 
+- Orders with cheaper shipping overtake the orders with more expensive shipping as the delivery time increases. 
 
 <p align="center">
-<img src="images/delivery_time_drives_bad_reviews_graph.png" width="60%" alt="Two-line chart showing bad review rate by delivery bucket for orders above and below the median shipping cost">
+<img src="images/delivery_time_drives_bad_reviews_graph.png" width="50%" alt="Two-line chart showing bad review rate by delivery bucket for orders above and below the median shipping cost">
 </p>
 
 **Orders split across multiple sellers have a bad review rate over 3x worse than single sellers, independent of delivery time.**
@@ -60,7 +61,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 - Split orders are 1.3% of all orders, 1,261 in total, and the three buckets shown cover 1,219 of them.
 - Among orders delivered within a week, 58.5% of split orders received a bad review against 13.2% of single-seller orders.
 - This difference holds at 60.8% against 16.7% for 8-14 days, and 68.9% against 22.3% for 15-21 days.
-- Orders taking longer than 21 days have been excluded as they contain only 42 split orders between them, not enough to draw meaningful conclusions
+- Orders taking longer than 21 days have been excluded as they contain only 42 split orders between them, not enough to draw meaningful conclusions.
 - Olist records a single delivery date per order, so it cannot be ruled out that some customers reviewed after receiving only part of a split order.
 
 <p align="center">
@@ -77,12 +78,12 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 </p>
 
 **Home and furniture categories carry the highest risk.** 
-- With over 1.7 times the platform average, `office_furniture` has a 36.6% bad review rate across 1,244 orders
+- With over 1.7 times the platform average, `office_furniture` has a 36.6% bad review rate across 1,244 orders.
 - `bed_bath_table` is the single largest source of bad reviews with 2,398 across 9,175 orders, despite a more moderate 26.1% bad review rate.
-- Six of the top 15 categories by rate are home or furniture goods leading. There may be a an issue when it comes to bulky, hard-to-ship products.
+- Six of the top 15 categories by rate are home or furniture goods. There may be an issue when it comes to bulky, hard-to-ship products.
 
 <p align="center">
-<img src="images/of_the_1244_office_furniture_orders__readme_graph.png" width="60%" alt="Bar chart ranking the top 15 product categories by bad review rate">
+<img src="images/of_the_1244_office_furniture_orders_readme_graph.png" width="60%" alt="Bar chart ranking the top 15 product categories by bad review rate">
 </p>
 
 ---
@@ -126,7 +127,7 @@ Two translations were renamed for readability: `cine_photo` to `photography_and_
 
 ### Key Metric Definitions
 
-- **`delivery_days`:** Total days from purchase timestamp to actual delivery. Median: 10 days. Average: 12 days. 90th percentile: 23 days.
+- **`delivery_days`:** Total days from purchase timestamp to actual delivery. Median: 10 days. Average: 12.1 days. 90th percentile: 23 days.
 - **`delivery_delay_days`:** Days between actual delivery and estimated delivery. Positive means late, negative means early. Median: -11 days. Only 6.8% of orders arrived late, so Olist's estimates are consistently conservative.
 
 ---
@@ -138,7 +139,7 @@ sql/
     01_setup.sql                  -- Load reviews CSV, verify row counts, rename tables
     02_data_quality.sql           -- Data quality investigation, fixes, views, and constraints
     03_exploration.sql            -- Distribution checks and all analytical queries
-images/                           -- Screenshots of query results
+images/                           -- Tableau Graphs and Entity Relationship Diagram
 csv_exports/					  -- Exported csv files from DBeaver 
 Olist Project in Tableau.twbx     -- Packaged Tableau workbook
 README.md

@@ -249,6 +249,28 @@ CROSS JOIN freight_median m
 GROUP BY delivery_bucket
 ORDER BY delivery_bucket;
 
+-- Do expensive shipping outliers explain the difference between the average and median?
+-- The 75th percentile is R$32.11 at 1 star against R$23.13 at 5 stars.
+-- The 99th percentile is R$144.31 against R$96.41, so more 1 star orders had expensive shipping, not just a few extreme ones.
+WITH order_freight AS (
+    SELECT
+        order_id,
+        SUM(freight_value) AS total_freight
+    FROM order_items
+    GROUP BY order_id
+)
+SELECT
+    r.review_score,
+    COUNT(*) AS order_count,
+    ROUND(PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY f.total_freight)::NUMERIC, 2) AS p25_freight,
+    ROUND(PERCENTILE_CONT(0.50) WITHIN GROUP (ORDER BY f.total_freight)::NUMERIC, 2) AS median_freight,
+    ROUND(PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY f.total_freight)::NUMERIC, 2) AS p75_freight,
+    ROUND(PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY f.total_freight)::NUMERIC, 2) AS p99_freight
+FROM orders_clean o
+INNER JOIN reviews_deduped r ON o.order_id = r.order_id
+INNER JOIN order_freight f ON o.order_id = f.order_id
+GROUP BY r.review_score
+ORDER BY r.review_score;
 
 --DELIVERY DELAY VS REVIEW SCORE--------------------------
 
