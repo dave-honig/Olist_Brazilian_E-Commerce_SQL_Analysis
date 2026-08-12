@@ -35,7 +35,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 - The longer a customers needs to wait, the greater the chance of a negative review.
 
 <p align="center">
-<img src="images/padded_delivery_estimates_graph.png" width="60%" alt="Bar chart showing average days each review score arrived before the estimated delivery date">
+<img src="images/padded_delivery_estimates_graph.png" width="40%" alt="Bar chart showing average days each review score arrived before the estimated delivery date">
 </p>
 
 **Typical orders show a minimal difference in the bad review rate when factoring in shipping costs**
@@ -64,7 +64,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 - Olist records a single delivery date per order, so it cannot be ruled out that some customers reviewed after receiving only part of a split order.
 
 <p align="center">
-<img src="images/orders_from_multiple_sellers_graph.png" width="60%" alt="Two-line chart comparing bad review rates for single-seller and multi-seller orders across delivery buckets">
+<img src="images/orders_from_multiple_sellers_graph.png" width="70%" alt="Two-line chart comparing bad review rates for single-seller and multi-seller orders across delivery buckets">
 </p>
 
 **Bad reviews are a platform-wide logistics problem, not a bad seller problem.** 
@@ -73,7 +73,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 - Removing every high-risk seller would leave the majority of the problem unresolved.
 
 <p align="center">
-<img src="images/only_14_percent_of_bad_reviews_graph.png" width="60%" alt="Stacked bar showing the share of all bad reviews contributed by each seller risk segment">
+<img src="images/only_14_percent_of_bad_reviews_graph.png" width="35%" alt="Stacked bar showing the share of all bad reviews contributed by each seller risk segment">
 </p>
 
 **Home and furniture categories carry the highest risk.** 
@@ -106,7 +106,7 @@ The Brazilian E-Commerce Public Dataset by Olist is available on [Kaggle](https:
 **Tools:** PostgreSQL, DBeaver
 
 <p align="center">
-<img src="images/entity_relationship_diagram.png" width="65%" alt="Entity Relationship Diagram">
+<img src="images/entity_relationship_diagram.png" width="70%" alt="Entity Relationship Diagram">
 </p>
 
 ---
