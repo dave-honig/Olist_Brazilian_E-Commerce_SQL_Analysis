@@ -51,6 +51,79 @@ VALUES
     ('pc_gamer', 'pc_gamer'),
     ('portateis_cozinha_e_preparadores_de_alimentos', 'portable_kitchen_and_food_preparers');
 
+-- Checking the English labels for errors.
+SELECT product_category_name, product_category_name_english
+FROM category_translation
+ORDER BY product_category_name_english;
+
+-- Five misspellings from the source file.
+UPDATE category_translation SET product_category_name_english = 'fashion_female_clothing'
+WHERE product_category_name_english = 'fashio_female_clothing';
+
+UPDATE category_translation SET product_category_name_english = 'home_comfort'
+WHERE product_category_name_english = 'home_confort';
+
+UPDATE category_translation SET product_category_name_english = 'construction_tools_garden'
+WHERE product_category_name_english = 'costruction_tools_garden';
+
+UPDATE category_translation SET product_category_name_english = 'construction_tools_tools'
+WHERE product_category_name_english = 'costruction_tools_tools';
+
+UPDATE category_translation SET product_category_name_english = 'arts_and_craftsmanship'
+WHERE product_category_name_english = 'arts_and_craftmanship';
+
+-- Updated English translation as 'seguros' means insurance, not security. 
+UPDATE category_translation SET product_category_name_english = 'insurance_and_services'
+WHERE product_category_name_english = 'security_and_services';
+
+-- Updated 'cds_dvds_musicals' translation as 'musicais' describes the type of CDs and DVDs, not the stage genre.
+UPDATE category_translation SET product_category_name_english = 'cds_dvds_music'
+WHERE product_category_name_english = 'cds_dvds_musicals';
+
+-- Updated 'cine_photo' to 'photography_and_video_equipment' for a more representative category label.
+UPDATE category_translation SET product_category_name_english = 'photography_and_video_equipment'
+WHERE product_category_name_english = 'cine_photo';
+
+-- Product weights confirm the 'fixed_telephony' category is most likely landline equipment averaging 661g against 237g for telephony.
+SELECT
+    ct.product_category_name_english AS category,
+    COUNT(*) AS products,
+    ROUND(AVG(p.product_weight_g)::NUMERIC) AS avg_weight_g,
+    ROUND(AVG(p.product_length_cm)::NUMERIC) AS avg_length_cm,
+    ROUND(AVG(p.product_height_cm)::NUMERIC) AS avg_height_cm
+FROM products p
+INNER JOIN category_translation ct ON p.product_category_name = ct.product_category_name
+WHERE ct.product_category_name_english IN ('telephony', 'fixed_telephony', 'electronics')
+GROUP BY 1;
+
+-- Renamed 'fixed_telephony' to 'landline_telephony' as landline is the more common English term.
+UPDATE category_translation SET product_category_name_english = 'landline_telephony'
+WHERE product_category_name_english = 'fixed_telephony';
+
+-- 'la_cuisine' is a housewares brand. Products average 4,350g and 67cm long, against 923g for food.
+SELECT
+    ct.product_category_name_english AS category,
+    COUNT(*) AS products,
+    ROUND(AVG(p.product_weight_g)::NUMERIC) AS avg_weight_g,
+    ROUND(AVG(p.product_length_cm)::NUMERIC) AS avg_length_cm,
+    ROUND(AVG(p.product_height_cm)::NUMERIC) AS avg_height_cm
+FROM products p
+INNER JOIN category_translation ct ON p.product_category_name = ct.product_category_name
+WHERE ct.product_category_name_english IN
+    ('la_cuisine', 'food', 'food_drink', 'drinks', 'housewares', 'small_appliances')
+GROUP BY 1
+ORDER BY avg_weight_g;
+
+-- No two categories should share a label and the category analysis groups on this column. A duplicate would merge them.
+SELECT product_category_name_english, COUNT(*)
+FROM category_translation
+GROUP BY 1
+HAVING COUNT(*) > 1;
+
+-- Fields reviewed but left alone.
+-- The 'home_comfort' and 'home_comfort_2' categories look like one category split in two but without knowing more about their products it was decided not to combine them.
+-- The categories of 'home_appliances' and 'home_appliances_2' were not combined for the same reason.
+-- Kitchen products are spread across four separate categories. Looking for differences between individual categories was prioritized so they were not combined. 
 
 
 --REVIEWS TABLE-------------------------------------------
@@ -107,8 +180,9 @@ HAVING COUNT(DISTINCT r.review_id) > 1
 ORDER BY review_count DESC
 LIMIT 300;
 
--- How much time is there between the duplicate reviews? 
--- Most duplicate reviews are 0-3 seconds apart from each other. 
+-- How much time separates the orders that share a review_id?
+-- 709 of 814 consecutive pairs were purchased within 3 seconds of each other.
+-- Near-simultaneous purchases point to a review assignment bug, not two genuine reviews.
 SELECT 
     r.review_id,
     r.order_id,
@@ -128,7 +202,7 @@ INNER JOIN (
     HAVING COUNT(*) > 1
 ) AS dupes ON r.review_id = dupes.review_id
 ORDER BY r.review_id, o.order_purchase_timestamp
-LIMIT 200;
+LIMIT 2000;
 
 -- Reviews table conclusion:
 -- Some order_ids have multiple reviews with different scores and comments, not explained by multiple products. 
@@ -151,7 +225,7 @@ SELECT DISTINCT ON (order_id)
     review_creation_date,
     review_answer_timestamp
 FROM reviews
-ORDER BY order_id, review_score ASC;
+ORDER BY order_id, review_score ASC, review_id;
 
 -- Row count and unique order_ids of the new view are both 98,673.
 SELECT COUNT(*) AS total,
@@ -229,7 +303,7 @@ FROM orders;
 
 -- Distribution of orders by status
 -- Filtering the dataset to only delivered orders will maintain 97.02% of the data with 96,478 orders.
--- This will be accomplished in an orders_clean table.
+-- This will be accomplished in an orders_clean view.
 SELECT
     order_status,
     COUNT(*) AS order_count,
@@ -242,7 +316,7 @@ ORDER BY order_count DESC;
 
 --CLEANING THE ORDERS TABLE---------------------------------------------------
 
--- The orders_clean view adds to new fields: delivery_days and delivery_delay_days
+-- The orders_clean view adds two new fields: delivery_days and delivery_delay_days
 -- These allow us to see how long the packages take to arrive from the moment the customer made the purchase, and
 -- how well the estimate delivery date presented to the customer was accurate.
 CREATE VIEW orders_clean AS
@@ -258,8 +332,8 @@ FROM orders o
 WHERE o.order_status = 'delivered'
 AND   o.order_delivered_customer_date IS NOT NULL;
 
--- The new orders_clean table contains 96,470 orders. The 8 order difference is from orders labeled as delivered, but have no delivery date. 
---Removing these 8 orders would not have a significant difference in the results. 
+-- The new orders_clean view contains 96,470 orders. The 8 order difference is from orders labeled as delivered, but have no delivery date. 
+-- Removing these 8 orders would not have a significant difference in the results. 
 SELECT *
 FROM orders
 WHERE order_status = 'delivered'

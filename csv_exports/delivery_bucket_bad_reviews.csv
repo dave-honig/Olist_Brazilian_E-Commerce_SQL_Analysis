@@ -1,0 +1,6 @@
+"delivery_bucket","order_count","bad_reviews","bad_review_pct"
+"1. 0-7 days",33526,4724,14.1
+"2. 8-14 days",36190,6243,17.3
+"3. 15-21 days",15264,3456,22.6
+"4. 22-30 days",6824,2769,40.6
+"5. 31+ days",4007,3035,75.7

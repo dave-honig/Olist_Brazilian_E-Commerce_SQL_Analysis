@@ -1,0 +1,6 @@
+"delivery_bucket","low_freight_orders","low_freight_bad_pct","high_freight_orders","high_freight_bad_pct"
+"1. 0-7 days",22507,12.7,11019,17.0
+"2. 8-14 days",16743,16.7,19447,17.7
+"3. 15-21 days",5455,23.6,9809,22.1
+"4. 22-30 days",2113,47.9,4711,37.3
+"5. 31+ days",1128,80.5,2879,73.9
