@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-What operational factors, such as delivery time, freight cost, and seller behavior, most strongly predict a negative customer experience, and which product categories and sellers represent the highest risk to customer satisfaction?
+What operational factors, such as delivery time, shipping cost, and seller behavior, most strongly predict a negative customer experience, and which product categories and sellers represent the highest risk to customer satisfaction?
 
 > A "bad review" is defined as a review score of 1, 2, or 3. These customers are less likely to return making them a churn risk.
 
@@ -10,7 +10,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 <p align="center">
   <a href="https://public.tableau.com/views/OlistProjectinTableau/OlistProject_v3?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link">
-    <img src="images/olist_tableau_dashboard.png" width="80%" alt="Tableau dashboard showing metrics which drive bad reviews">
+    <img src="images/olist_tableau_dashboard_v2.png" width="80%" alt="Tableau dashboard showing metrics which drive bad reviews">
   </a>
   <br>
   <a href="https://public.tableau.com/views/OlistProjectinTableau/OlistProject_v3?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link">View the Tableau dashboard</a>
@@ -41,7 +41,7 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 
 **Typical orders show a minimal difference in shipping costs between 1-star and 5-star orders**
 - A difference of only R$2 separates 1-star orders with a median of R$18.79 to R$16.79 for a 5-star order.
-- Averages diverge much further at R$28.15 for 1-star and R$21.71 for 5-star orders. The 1-star average in being increased by expensive outliers at a higher rate than 5-star orders.
+- Averages diverge much further at R$28.15 for 1-star and R$21.71 for 5-star orders. The 1-star average is being increased by expensive outliers.
 
 <p align="center">
 <img src="images/1_star_orders_typically_pay_graph.png" width="60%" alt="Dumbbell chart comparing median and average shipping cost for each review score">
@@ -85,6 +85,30 @@ What operational factors, such as delivery time, freight cost, and seller behavi
 <p align="center">
 <img src="images/of_the_1244_office_furniture_orders_readme_graph.png" width="60%" alt="Bar chart ranking the top 15 product categories by bad review rate">
 </p>
+
+---
+
+## Conclusion
+
+Delivery time is the dominant force behind customer dissatisfaction on Olist. Below 21 days the bad review rate rises gradually from 14.1% to 22.6%. Beyond that the rate nearly doubles, reaching 75.7% for orders taking over a month. Neither shipping cost nor individual seller quality explains this increase. Shipping cost stops predicting bad reviews once orders are compared with the same delivery time. The worst-performing sellers account for only 13.9% of all bad reviews. Reducing bad reviews becomes more of a logistics problem.
+
+### Recommendations
+
+**Treat 21 days as an operational threshold.** Orders crossing it are nearly twice as likely to draw a bad review, and orders passing 30 days get bad reviews 3/4 of the time. Flagging orders as they approach 21 days in transit would identify the population where intervention is worth the cost.
+
+**Do not expect shipping subsidies to improve satisfaction.** A typical 1-star order paid only R$2 more to ship than a typical 5-star order. The shipping difference stops predicting bad reviews once delivery times are held equal.
+
+**Review how orders spanning multiple sellers are fulfilled and communicated.** With bad reviews occurring over three times the rate at every delivery speed, multi-seller orders are the only factor besides delivery time that held up under scrutiny. The 1.3% of volume for these types of orders will not move the platform-wide number, but it warrants looking into further.
+
+**Prioritize logistics improvements around bulky categories rather than at individual sellers.** `office_furniture` carries the highest rate at 36.6%, while `bed_bath_table` produces the largest absolute volume of bad reviews at 2,398. These do need different strategies as one is a rate problem while the other is a scale problem.
+
+### Limitations and Next Steps
+
+The dataset records a single delivery date per order, so it is not possible to test whether split orders receive bad reviews because customers review before receiving all items.
+
+There is no carrier or warehouse data, so delivery time cannot be separated into seller handling time and carrier transit time. Without that split, the analysis identifies the problem but cannot locate it.
+
+All findings are observational. The relationships hold consistently and survive comparison at equal delivery speed, but nothing here establishes causation.
 
 ---
 
